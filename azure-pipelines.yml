@@ -6,12 +6,14 @@
 trigger:
 - main
 
+parameters:
+  - name: TrueBoolParam
+    type: boolean
+    default: true
+
 variables:
   - name: TrueBool
     value: true
-
-  - name: FalseBool
-    value: false
 
 pool:
   vmImage: ubuntu-latest
@@ -29,3 +31,13 @@ steps:
   - script: |
       echo Bool True Equals
     displayName: 'BoolTrueEquals'
+
+- ${{ if eq(parameters.TrueBoolParam, 'true') }}:
+  - script: |
+      echo String True Equals Param
+    displayName: 'StringTrueEqualsParam'
+
+- ${{ if eq(parameters.TrueBoolParam, true) }}:
+  - script: |
+      echo Bool True Equals Param
+    displayName: 'BoolTrueEqualsParam'
