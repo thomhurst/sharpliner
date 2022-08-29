@@ -1,0 +1,31 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+variables:
+  - name: TrueBool
+    value: true
+
+  - name: FalseBool
+    value: false
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- ${{ if eq(variables.TrueBool, 'true') }}:
+  - script: |
+      echo String True Equals
+    displayName: 'StringTrueEquals'
+
+- ${{ if eq(variables.TrueBool, true) }}:
+  - script: |
+      echo Bool True Equals
+    displayName: 'BoolTrueEquals'
