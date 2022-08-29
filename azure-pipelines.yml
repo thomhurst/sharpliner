@@ -32,12 +32,22 @@ steps:
       echo Bool True Equals
     displayName: 'BoolTrueEquals'
 
-- ${{ if eq(parameters.TrueBoolParam, 'true') }}:
+- ${{ if eq(${{ parameters.TrueBoolParam }}, 'true') }}:
   - script: |
       echo String True Equals Param
     displayName: 'StringTrueEqualsParam'
 
-- ${{ if eq(parameters.TrueBoolParam, true) }}:
+- ${{ if eq(${{ parameters.TrueBoolParam }}, true) }}:
   - script: |
       echo Bool True Equals Param
     displayName: 'BoolTrueEqualsParam'
+
+- ${{ if eq('${{ parameters.TrueBoolParam }}'', 'true') }}:
+  - script: |
+      echo String True Equals Param2
+    displayName: 'StringTrueEqualsParam2'
+
+- ${{ if eq('${{ parameters.TrueBoolParam }}'', true) }}:
+  - script: |
+      echo Bool True Equals Param2
+    displayName: 'BoolTrueEqualsParam2'
