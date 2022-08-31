@@ -40,7 +40,7 @@ jobs:
         echo Hello again
 
   - script: |-
-      echo $('VariableBasedUponParameter')
+      echo $(VariableBasedUponParameter)
 
   - script: |-
       echo ${{ parameters.Parameter1 }}
