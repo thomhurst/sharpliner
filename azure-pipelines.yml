@@ -32,7 +32,7 @@ jobs:
       echo $(restore-var)
 
   - script: |-
-      echo {{ parameters['restore'] }}
+      echo parameters.restore
 
   - script: |-
       echo ${{ parameters.restore }}
