@@ -30,3 +30,9 @@ jobs:
 
   - script: |-
       echo $(restore-var)
+
+  - script: |-
+      echo {{ parameters['restore'] }}
+
+  - script: |-
+      echo ${{ parameters.restore }}
