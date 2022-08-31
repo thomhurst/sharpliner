@@ -1,38 +1,46 @@
-parameters:
-- name: restore
-  type: boolean
-  default: true
-
 trigger:
   branches:
     include:
     - develop
 
+parameters:
+- name: Parameter1
+  type: string
+  default: SomeParameterValue1
+
+- name: Parameter2
+  type: string
+  default: SomeParameterValue2
+
 variables:
-- ${{ if eq(parameters.restore, 'true') }}:
-  - name: restore-var
-    value: restore is true
+- name: Variable1
+  value: SomeVariableValue1
+
+- name: Variable2
+  value: SomeVariableValue2
+
+- ${{ if eq(parameters.Parameter1, 'SomeParameterValue1') }}:
+  - name: VariableBasedUponParameter
+    value: Parameter1 Equals SomeParameterValue1
 
 - ${{ else }}:
-  - name: restore-var
-    value: restore is false
+  - name: VariableBasedUponParameter
+    value: Parameter1 Does Not Equal SomeParameterValue1
 
 jobs:
 - job: Blah
   displayName: Blah
   steps:
-  - ${{ if eq(parameters.restore, 'true') }}:
+  - ${{ if eq(parameters.Parameter1, 'SomeParameterValue1') }}:
     - script: |-
         echo Hello
 
-  - script: |-
-      echo variables['restore-var']
+  - ${{ if eq(variables['VariableBasedUponParameter'], 'Parameter1 Equals SomeParameterValue1') }}:
+    - script: |-
+        echo Hello again
 
   - script: |-
-      echo $(restore-var)
+      echo $('VariableBasedUponParameter')
 
   - script: |-
-      echo parameters.restore
-
-  - script: |-
-      echo ${{ parameters.restore }}
+      echo ${{ parameters.Parameter1 }}
