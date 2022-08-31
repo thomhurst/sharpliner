@@ -1,0 +1,29 @@
+parameters:
+- name: restore
+  type: boolean
+  default: true
+
+trigger:
+  branches:
+    include:
+    - develop
+
+variables:
+- ${{ if eq(parameters.restore, 'true') }}:
+  - name: restore-var
+    value: restore is true
+
+- ${{ else }}:
+  - name: restore-var
+    value: restore is false
+
+jobs:
+- job: Blah
+  displayName: Blah
+  steps:
+  - ${{ if eq(parameters.restore, 'true') }}:
+    - script: |-
+        echo Hello
+
+  - script: |-
+      echo variables['restore-var']
