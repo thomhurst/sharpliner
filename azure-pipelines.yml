@@ -27,3 +27,6 @@ jobs:
 
   - script: |-
       echo variables['restore-var']
+
+  - script: |-
+      echo $(restore-var)
