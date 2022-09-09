@@ -8,7 +8,7 @@ trigger:
 
 parameters:
 - name: Param1
-  displayName: ParamValue1
+  default: ParamValue1
   type: string
 
 variables:
