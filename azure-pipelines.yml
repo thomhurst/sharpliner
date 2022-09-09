@@ -23,6 +23,6 @@ stages:
     steps:
     - script: |-
         echo Does this condition work?
-      condition: startsWith('Param', '${{ parameters.Param1 }}'')
-    condition: startsWith('Param', '${{ parameters.Param1 }}'')
-  condition: startsWith('Param', '${{ parameters.Param1 }}'')
+      condition: startsWith('Param', '${{ parameters.Param1 }}')
+    condition: startsWith('Param', '${{ parameters.Param1 }}')
+  condition: startsWith('Param', '${{ parameters.Param1 }}')
