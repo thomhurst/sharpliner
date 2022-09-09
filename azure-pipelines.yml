@@ -12,7 +12,7 @@ parameters:
   type: string
 
 variables:
-- ${{ if startsWith('Param', parameters.Param1) }}:
+- ${{ if startsWith(parameters.Param1, 'Param') }}:
   - name: feature
     value: on
 
@@ -23,6 +23,6 @@ stages:
     steps:
     - script: |-
         echo Does this condition work?
-      condition: startsWith('Param', '${{ parameters.Param1 }}')
-    condition: startsWith('Param', '${{ parameters.Param1 }}')
-  condition: startsWith('Param', '${{ parameters.Param1 }}')
+      condition: startsWith('${{ parameters.Param1 }}', 'Param')
+    condition: startsWith('${{ parameters.Param1 }}', 'Param')
+  condition: startsWith('${{ parameters.Param1 }}', 'Param')
