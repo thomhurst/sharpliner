@@ -7,47 +7,22 @@ trigger:
 - main
 
 parameters:
-  - name: TrueBoolParam
-    type: boolean
-    default: true
+- name: Param1
+  displayName: ParamValue1
+  type: string
 
 variables:
-  - name: TrueBool
-    value: true
+- ${{ if startsWith('Param', parameters.Param1) }}:
+  - name: feature
+    value: on
 
-pool:
-  vmImage: ubuntu-latest
-
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- ${{ if eq(variables.TrueBool, 'true') }}:
-  - script: |
-      echo String True Equals
-    displayName: 'StringTrueEquals'
-
-- ${{ if eq(variables.TrueBool, true) }}:
-  - script: |
-      echo Bool True Equals
-    displayName: 'BoolTrueEquals'
-
-- ${{ if eq(parameters.TrueBoolParam, 'true') }}:
-  - script: |
-      echo String True Equals Param
-    displayName: 'StringTrueEqualsParam'
-
-- ${{ if eq(parameters.TrueBoolParam, true) }}:
-  - script: |
-      echo Bool True Equals Param
-    displayName: 'BoolTrueEqualsParam'
-
-- ${{ if eq('${{ parameters.TrueBoolParam }}', 'true') }}:
-  - script: |
-      echo String True Equals Param2
-    displayName: 'StringTrueEqualsParam2'
-
-- ${{ if eq('${{ parameters.TrueBoolParam }}', true) }}:
-  - script: |
-      echo Bool True Equals Param2
-    displayName: 'BoolTrueEqualsParam2'
+stages:
+- stage: Stage1
+  jobs:
+  - job: Job1
+    steps:
+    - script: |-
+        echo Does this condition work?
+      condition: ${{ if startsWith('Param', parameters.Param1) }}
+    condition: ${{ if startsWith('Param', parameters.Param1) }}
+  condition: ${{ if startsWith('Param', parameters.Param1) }}
